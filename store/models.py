@@ -8,6 +8,10 @@ class Category(models.Model):
 
     class Meta:
         db_table = 'categories'
+        verbose_name_plural = 'Categories'
+
+    def __str__(self):
+        return self.title
 
 class Product(models.Model):
     title = models.CharField(max_length=40)
@@ -15,10 +19,15 @@ class Product(models.Model):
     quantity = models.PositiveIntegerField()
     description = models.TextField(null=True, blank=True)
     is_available = models.BooleanField(default=True)
+    on_sale = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'product'
+        verbose_name_plural = 'Products'
+
+    def __str__(self):
+        return self.title
 
